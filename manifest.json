@@ -1,0 +1,23 @@
+{
+  "short_name": "Kredit Syariah Sangatta",
+  "name": "Kredit Syariah Sangatta",
+  "description": "Aplikasi Pembiayaan Syariah - Versi Ringan",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png", 
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": ".",
+  "theme_color": "#2c7da0",
+  "orientation": "portrait"
+}
