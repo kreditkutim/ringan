@@ -1,5 +1,9 @@
  <style>
-    body {
+body {
+    background: linear-gradient(135deg, #2c7da0 0%, #1a4c68 100%);
+    /* properti lainnya tetap */
+}
+body {
       font-family: Arial, sans-serif;
       background: #e8f4fd;
       margin: 0;
