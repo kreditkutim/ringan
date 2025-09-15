@@ -1,4 +1,4 @@
-   <style>
+<style>
     body {
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       color: #333;
@@ -15,7 +15,7 @@
         }
 
         h1 {
-            color: #ff9800;
+            color: #0000FF;
             margin: 0;
             font-size: 2.2rem;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -25,19 +25,19 @@
             text-align: center;
             margin-top: 0;
             font-size: 24px;
-            color: #ff5722;
+            color: #0000FF;
         }
 
         h3 {
-            color: #ff9800;
-            border-bottom: 2px solid #ff9800;
+            color: #0000FF;
+            border-bottom: 2px solid #0000FF;
             padding-bottom: 8px;
             margin-top: 30px;
         }
 
         .form-container {
             max-width: 100%;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
         }
 
         .container {
@@ -45,7 +45,7 @@
             margin: 0 auto 40px auto;
             background-color: #fff;
             padding: 25px;
-            border: 2px solid #ff5722;
+            border: 2px solid #0000FF;
             border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             color: #333;
@@ -78,7 +78,7 @@
             margin-top: 20px;
             width: 100%;
             padding: 14px;
-            background-color: #f53d2d;
+            background-color: #1E90FF;
             color: white;
             border: none;
             border-radius: 8px;
@@ -89,7 +89,7 @@
         }
 
         button:hover {
-            background-color: #c73124;
+            background-color: #000080;
         }
 
         #hasilCicilan {
