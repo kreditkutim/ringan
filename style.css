@@ -1,113 +1,131 @@
- <style>
+<style>
 body {
+    /* BACKGROUND GRADIENT */
     background: linear-gradient(135deg, #2c7da0 0%, #1a4c68 100%);
-    /* properti lainnya tetap */
+    
+    /* FONT & TEXT */
+    font-family: Arial, sans-serif;
+    color: white; /* Diubah jadi putih untuk kontras dengan background gelap */
+    
+    /* LAYOUT */
+    margin: 0;
+    padding: 20px;
 }
-body {
-      font-family: Arial, sans-serif;
-      background: #e8f4fd;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
 
-    h2 {
-      text-align: center;
-      margin-top: 0;
-      font-size: 24px;
-      color: #ff5722;
-    }
+h2 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 24px;
+    color: #ff5722; /* Tetap orange untuk contrast */
+}
 
-    .form-container {
-      max-width: 100%;
-      height: 95vh;
-      margin-bottom: 40px;
-    }
+.form-container {
+    max-width: 100%;
+    height: 95vh;
+    margin-bottom: 40px;
+}
 
-    .container {
-      max-width: 500px;
-      margin: 0 auto 40px auto;
-      background-color: #fff;
-      padding: 20px;
-      border: 2px solid #ff5722;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+.container {
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #ff5722;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    color: #333; /* Teks gelap untuk container putih */
+}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333; /* Teks gelap untuk label */
+}
 
-    input {
-      font-size: 18px;
-      width: 95%;
-      padding: 4px;
-      margin-top: 2px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+input {
+    font-size: 18px;
+    width: 95%;
+    padding: 4px;
+    margin-top: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      background-color: #f53d2d;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background-color: #f53d2d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-    button:hover {
-      background-color: #c73124;
-    }
+button:hover {
+    background-color: #c73124;
+}
 
-    #hasilCicilan {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #fff3e0;
-      border-left: 4px solid #ff5722;
-      border-radius: 5px;
-      font-size: 18px;
-    }
+#hasilCicilan {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff3e0;
+    border-left: 4px solid #ff5722;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #333; /* Teks gelap untuk hasil */
+}
 
-    #wa-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 9999;
-    }
+#wa-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 9999;
+}
 
-    #wa-button:hover {
-      background-color: #1eb154;
-    }
+#wa-button:hover {
+    background-color: #1eb154;
+}
 
-    .info-box {
-      max-width: 800px;
-      margin: 0 auto 40px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
+.info-box {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    color: #333; /* Teks gelap untuk info box */
+}
 
-    .steps {
-      background: #fff;
-      padding: 20px;
-      margin-top: 40px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-  </style>
+.steps {
+    background: #fff;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    color: #333; /* Teks gelap untuk steps */
+}
+
+/* Tambahan untuk elemen teks lainnya */
+p, li, ol, ul {
+    color: white; /* Teks putih untuk konten di body */
+}
+
+/* Untuk teks dalam container putih */
+.container p, .container li, .container ol, .container ul,
+.info-box p, .info-box li, .info-box ol, .info-box ul,
+.steps p, .steps li, .steps ol, .steps ul {
+    color: #333; /* Teks gelap dalam container putih */
+}
+</style>
