@@ -37,6 +37,4 @@
         <p><b>Batas Akhir Cicilan:</b> ${batasAkhir}</p>
       `;
     }
-
- 
   </script>
