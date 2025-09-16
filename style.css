@@ -148,26 +148,16 @@
             transform: translateY(-2px);
         }
 
-        .info-box {
+        .info-box, .steps {
             width: 100%;
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto 30px auto;
             background: white;
             padding: 20px;
             border-radius: 16px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             color: #333;
-        }
-
-        .steps {
-            width: 100%;
-            max-width: 800px;
-            background: #fff;
-            padding: 20px;
-            margin: 30px auto;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            color: #333;
+            margin: 0 auto 30px auto;
         }
 
         .step-content {
@@ -175,11 +165,6 @@
             padding: 15px;
             border-radius: 8px;
             margin: 15px 0;
-        }
-
-        /* Untuk teks dalam container putih */
-        .container, .info-box, .steps {
-            color: #333;
         }
 
         /* FLOATING DATA BUTTON */
