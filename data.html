@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Manifest -->
-  <link rel="manifest" href="manifest.json">
+  <!-- Manifest dengan versioning -->
+  <link rel="manifest" href="manifest.json?v=2">
   
-  <!-- iOS support -->
-  <link rel="apple-touch-icon" href="icon-192x192.png">
+  <!-- iOS support dengan versioning -->
+  <link rel="apple-touch-icon" href="icon-192x192.png?v=2">
   <meta name="apple-mobile-web-app-status-bar" content="#2c7da0">
   <meta name="theme-color" content="#2c7da0">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,7 +16,12 @@
   <!-- Android theme color -->
   <meta name="theme-color" content="#2c7da0">
   
-  <title>Cek Data Cicilan - Kredit Kutim Ringan</title>
+  <!-- Cache control -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <title>Cek Data Cicilan - Kredit Kutim Syariah</title>
   <style>
     * {
       box-sizing: border-box;
@@ -47,7 +52,6 @@
       color: white;
       padding: 20px;
       text-align: center;
-      position: relative;
     }
     
     .logo-container {
@@ -81,21 +85,6 @@
     .tagline {
       font-size: 14px;
       opacity: 0.9;
-    }
-    
-    .install-button {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      display: none;
     }
     
     .content {
@@ -209,15 +198,6 @@
         font-size: 20px;
       }
       
-      .install-button {
-        position: relative;
-        top: 0;
-        right: 0;
-        margin: 10px auto;
-        display: block;
-        width: 180px;
-      }
-      
       .content {
         padding: 15px;
       }
@@ -229,11 +209,11 @@
   <div class="container">
     <header>
       <div class="logo-container">
-        <div class="logo">Kredit Kutim Ringan</div>
+        <div class="logo">Kredit Kutim Syariah</div>
       </div>
       <h1>Cek Data Cicilan</h1>
-      <p class="tagline">Aplikasi Pembiayaan Syariah - Versi Ringan</p>
-     </header>
+      <p class="tagline">Aplikasi Pembiayaan Syariah Kabupaten Kutim</p>
+    </header>
     
     <div class="content">
       <div class="form-group">
@@ -257,7 +237,7 @@
         </div>
       </div>
     </div>
-    </body>
+    
     <footer>
       <p>© 2023 Kredit Kutim Syariah. All rights reserved.</p>
       <p>Layanan Pembiayaan Berbasis Syariah</p>
@@ -353,5 +333,62 @@
         <p><strong>Sisa Pembayaran:</strong> ${sisaBayar ? formatRupiah(sisaBayar) : '-'}</p>
       `;
       
-      function hitungCicilanTerakhir
+      function hitungCicilanTerakhirBulan(tanggalMulai, lamaBulan) {
+        if (!tanggalMulai || !lamaBulan) return '-';
+        
+        // Pecah tanggal mulai (format dd/mm/yyyy)
+        const parts = tanggalMulai.split('/');
+        if (parts.length !== 3) return '-';
+
+        const month = parseInt(parts[1], 10) - 1; // 0-based index
+        const year = parseInt(parts[2], 10);
+
+        const mulaiDate = new Date(year, month, 1);
+        mulaiDate.setMonth(mulaiDate.getMonth() + parseInt(lamaBulan, 10));
+
+        const options = { month: 'long', year: 'numeric' };
+        return mulaiDate.toLocaleDateString('id-ID', options);
+      }
+      
+      const riwayatDiv = document.getElementById("riwayatCicilan");
+      if (data.cicilan && data.cicilan.length > 0) {
+        riwayatDiv.innerHTML = data.cicilan.map(cicilan => {
+          const nominal = toNumber(cicilan.nominal);
+          return `
+            <div class="cicilan-item">
+              <p><strong>Tanggal:</strong> ${cicilan.tanggal || '-'}</p>
+              <p><strong>Nominal:</strong> ${nominal ? formatRupiah(nominal) : '-'}</p>
+            </div>
+          `;
+        }).join('');
+      } else {
+        riwayatDiv.innerHTML = "<p>Belum ada riwayat pembayaran</p>";
+      }
+
+      document.getElementById("hasil").style.display = "block";
+    }
+
+    // Force clear service worker when page loads
+if ('serviceWorker' in navigator) {
+  // Unregister any existing service worker
+  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for(let registration of registrations) {
+      registration.unregister();
+      console.log('Service Worker unregistered for update');
+    }
+  });
+  
+  // Register new service worker
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js?v=2')
+      .then(function(registration) {
+        console.log('SW registered: ', registration);
+      })
+      .catch(function(registrationError) {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
   </script>
+</body>
+</html>
