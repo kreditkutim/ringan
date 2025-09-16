@@ -33,30 +33,30 @@
 
     h1 {
         color: #0000FF;
-        margin: 0;
+        margin: 10;
         font-size: 1.8rem;
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
     }
 
     h2 {
         text-align: center;
-        margin-top: 0;
+        margin-top: 10;
         font-size: 1.5rem;
         color: #0000FF;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
     h3 {
         color: #0000FF;
         border-bottom: 2px solid #0000FF;
         padding-bottom: 8px;
-        margin-top: 20px;
+        margin-top: 10px;
         font-size: 1.2rem;
     }
 
     .form-container {
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         display: flex;
         justify-content: center;
     }
@@ -71,12 +71,12 @@
         border-radius: 16px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         color: #333;
-        margin: 0 auto 30px auto;
+        margin: 0 auto 20px auto;
     }
 
     label {
         display: block;
-        margin-top: 15px;
+        margin-top: 10px;
         font-weight: bold;
         color: #333;
         font-size: 0.95rem;
@@ -84,7 +84,7 @@
 
     input {
         font-size: 16px;
-        width: 100%;
+        width: 95%;
         padding: 12px;
         margin-top: 5px;
         border: 1px solid #ccc;
@@ -100,9 +100,9 @@
 
     button {
         margin-top: 20px;
-        width: 100%;
+        width: 95%;
         padding: 14px;
-        background-color: #f53d2d;
+        background-color: #0000FF; #f53d2d;
         color: white;
         border: none;
         border-radius: 8px;
