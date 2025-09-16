@@ -18,50 +18,54 @@
             padding: 15px;
             line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
-            background: white;
+            background-color: #fff;
+            padding: 20px;
             border: 2px solid #0000FF;
             border-radius: 16px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin: 0 auto;
+            color: #333;
+            margin-bottom: 20px;
         }
         
         header {
-            background: linear-gradient(135deg, #1a4c68 0%, #2c7da0 100%);
-            color: white;
-            padding: 25px;
             text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
         }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
+
         h1 {
-            color: #fff;
+            color: #0000FF;
             margin: 0;
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
-        
-        .tagline {
-            font-size: 16px;
-            opacity: 0.9;
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #0000FF;
+            margin-bottom: 15px;
         }
-        
-        .content {
-            padding: 25px;
+
+        h3 {
+            color: #0000FF;
+            border-bottom: 2px solid #0000FF;
+            padding-bottom: 8px;
+            margin-top: 20px;
+            font-size: 1.2rem;
         }
         
         .form-group {
@@ -234,32 +238,37 @@
             padding: 20px;
             color: #fff;
             font-size: 0.9rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         @media (max-width: 768px) {
             body {
-                padding: 15px;
+                padding: 10px;
             }
             
             .container {
-                border-radius: 12px;
-            }
-            
-            header {
-                padding: 20px;
+                padding: 15px;
             }
             
             h1 {
-                font-size: 24px;
+                font-size: 1.5rem;
             }
             
-            .content {
-                padding: 20px;
+            h2 {
+                font-size: 1.3rem;
             }
-
+            
+            input {
+                padding: 10px;
+                font-size: 16px;
+            }
+            
+            #wa-button {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+            
             .floating-data-btn {
                 bottom: 70px;
                 right: 15px;
@@ -268,34 +277,31 @@
                 font-size: 18px;
             }
         }
-        
+
         @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
-            header {
-                padding: 15px;
+            .container {
+                padding: 12px;
+                border-radius: 12px;
             }
             
             h1 {
-                font-size: 22px;
+                font-size: 1.3rem;
             }
             
-            .content {
-                padding: 15px;
+            h2 {
+                font-size: 1.2rem;
             }
             
-            input, button {
+            h3 {
+                font-size: 1.1rem;
+            }
+            
+            input {
+                padding: 8px;
+            }
+            
+            button {
                 padding: 12px;
-            }
-
-            .floating-data-btn {
-                bottom: 70px;
-                right: 15px;
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
             }
         }
     </style>
