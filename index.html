@@ -164,7 +164,91 @@
       `;
     }
 
+      async function cekData() {
+            const kode = document.getElementById('kode').value.trim();
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const hasil = document.getElementById('hasil');
+            
+            // Sembunyikan pesan error dan hasil sebelumnya
+            error.style.display = 'none';
+            hasil.style.display = 'none';
+            
+            // Validasi kode
+            if (!kode || kode.length !== 8) {
+                error.textContent = 'Kode harus terdiri dari 8 digit';
+                error.style.display = 'block';
+                return;
+            }
+            
+            // Tampilkan loading
+            loading.style.display = 'block';
+            
+            try {
+                // Panggil Google Apps Script API
+                const url = `https://script.google.com/macros/s/AKfycbz5VJRylw-dvset6w_JhzVkgUZ1zW5viLtJTKDS7hPSgHuRDBu3vYxqBEHu4cqebfxu/exec?kode=${kode}`;
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                const data = await response.json();
+                
+                // Sembunyikan loading
+                loading.style.display = 'none';
+                
+                if (data.status === 'success') {
+                    // Tampilkan data konsumen
+                    let htmlKonsumen = '';
+                    
+                    for (const [key, value] of Object.entries(data.data)) {
+                        // Skip riwayat pembayaran (ditampilkan terpisah)
+                        if (key === 'riwayat') continue;
+                        
+                        htmlKonsumen += `
+                            <div class="data-item">
+                                <span class="data-label">${key.charAt(0).toUpperCase() + key.slice(1)}: </span>
+                                <span class="data-value">${value}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    document.getElementById('detailKonsumen').innerHTML = htmlKonsumen;
+                    
+                    // Tampilkan riwayat cicilan jika ada
+                    let htmlRiwayat = '';
+                    if (data.riwayat && data.riwayat.length > 0) {
+                        data.riwayat.forEach(item => {
+                            htmlRiwayat += `
+                                <div class="data-item">
+                                    <span class="data-label">${item.bulan}: </span>
+                                    <span class="data-value">${item.status} (${item.tanggal})</span>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        htmlRiwayat = '<p>Tidak ada riwayat pembayaran</p>';
+                    }
+                    
+                    document.getElementById('riwayatCicilan').innerHTML = htmlRiwayat;
+                    
+                    // Tampilkan hasil
+                    hasil.style.display = 'block';
+                } else {
+                    error.textContent = data.message || 'Kode tidak ditemukan. Pastikan kode yang dimasukkan benar.';
+                    error.style.display = 'block';
+                }
+            } catch (err) {
+                loading.style.display = 'none';
+                error.textContent = 'Terjadi kesalahan saat mengambil data. Silakan coba lagi.';
+                error.style.display = 'block';
+                console.error('Error:', err);
+            }
+        }
+
+     
    </script>
-  <a href="https://kreditkutim.github.io/ringan/data.html" class="floating-data-btn" target="_blank">📊</a>
+  
 </body>
 </html>
