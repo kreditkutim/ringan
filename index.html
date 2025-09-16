@@ -1,34 +1,141 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="Kredit Syariah di Sangatta dengan prinsip transparansi dan tanpa riba" />
-  <title>Kredit Syariah</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kredit Syariah Sangatta (KSS)</title>
+  <meta name="description" content="Kredit Syariah Sangatta dengan prinsip transparansi, tanpa riba, dan cicilan ringan.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #2c7da0, #1a4c68);
+      background-attachment: fixed;
+      padding: 15px;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3 {
+      color: #0000FF;
+      margin-bottom: 10px;
+    }
+
+    .info-box, .container, .steps {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      border-color: #2c7da0;
+      outline: none;
+    }
+
+    button {
+      background: linear-gradient(to bottom, #2c7da0, #1a4c68);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(to bottom, #3a8cb0, #2a5c80);
+    }
+
+    #wa-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #wa-button:hover {
+      background-color: #1eb154;
+    }
+
+    #loading, #error {
+      display: none;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+    }
+
+    #loading { background: #e3f2fd; color: #0d47a1; }
+    #error { background: #ffebee; color: #c62828; }
+
+    .data-container { display: none; margin-top: 20px; }
+    .data-section { margin-bottom: 20px; }
+    .data-item { margin-bottom: 8px; }
+    .data-label { font-weight: bold; }
+    .data-value { color: #1a4c68; }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <a 
-    id="wa-button"
-    href="https://wa.me/6282352680715?text=Assalamualaikum%0ASaya%0ANama%20%3A%20%0Abisakah%20saya%20mendapatkan%20info%20selengkapnya%20tentang%20kredit.." 
-    target="_blank">
-    💬 Chat Admin Widiya
-  </a>
 
+  <!-- Info Awal -->
   <div class="info-box">
-    <h2>( KSS ) Kredit Syariah Sangatta</h2>
-    <p>Kredit syariah dengan akad Murabahan: Transaksi transparan pembeli dan penjual saling mengetahui Harga Modal dan keuntungan.</p>
-    <p>Akad jual beli</p>
-    <p>Harga tetap dari awal</p>
-    <p>Tanpa riba bunga</p>
-    <p>Penyerahan berupa barang bukan uang</p>
+    <h2>(KSS) Kredit Syariah Sangatta</h2>
+    <p>Kredit syariah dengan akad Murabahan: transaksi transparan, pembeli dan penjual saling mengetahui harga modal dan keuntungan.</p>
+    <ul>
+      <li>Akad jual beli</li>
+      <li>Harga tetap dari awal</li>
+      <li>Tanpa riba bunga</li>
+      <li>Penyerahan berupa barang, bukan uang</li>
+    </ul>
   </div>
 
+  <!-- Simulasi Cicilan -->
   <div class="container">
     <h2>Simulasi Cicilan</h2>
-
     <label for="hargaBarang">Harga Barang:</label>
     <input type="number" id="hargaBarang" placeholder="Contoh: 10000000">
 
@@ -39,119 +146,80 @@
     <input type="number" id="dp" placeholder="Contoh: 1000000">
 
     <button onclick="hitungCicilan()">Hitung Cicilan</button>
-
     <div id="hasilCicilan"></div>
   </div>
 
-
-<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <h3>Langkah Pengajuan Kredit</h3>
-  <ol>
-    <li>Chat Admin</li>
-    <li>Tentukan salah satu skema pembelian</li>
-  </ol>
-</div>
-
-
-<div style="background: #fff; padding: 20px; margin-top: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <h3>Skema Pembelian</h3>
-
-    <h3>1. Cara Pertama</h3>
-    <ol type="a">
-      <li>Beritahu kami barang yang Anda butuhkan, toko dan harganya.</li>
-      <li>Kami datang ke toko untuk membeli sesuai pilihan anda</li>
-      <li>Kami membeli barang tersebut dan menjualnya ke Anda dengan harga sesuai hasil perhitungan</li>
-      <li>Anda bisa ambil di tempat kami, atau barang kami antar ke rumah anda.</li>
+  <!-- Langkah & Skema -->
+  <div class="steps">
+    <h3>Langkah Pengajuan Kredit</h3>
+    <ol>
+      <li>Chat Admin</li>
+      <li>Tentukan salah satu skema pembelian</li>
     </ol>
-
-    <h3>2. Cara Kedua</h3>
-    <ol type="a">
-      <li>Anda bersama kami mencari barang ke toko.</li>
-      <li>Barang pilihan Anda kami beli dan langsung kami jual ke Anda dengan harga sesuai hasil perhitungan.</li>
-    </ol>
-
-    <h3>3. Cara Ketiga</h3>
-    <ol type="a">
-      <li>Anda meminta kami untuk mencarikan barang.</li>
-      <li>Setelah barang kami dapatkan, kami akan membuat kesepakatan dengan Anda.</li>
-      <li>Barang kami beli dan kami jual ke Anda dengan harga sesuai hasil perhitungan</li>
-    </ol>
-    <h3>3. Cara Keempat</h3>
-    <ol type="a">
-      <li>Anda survei ke toko yang menerima pembayaran transfer</li>
-      <li>sampaikan specifikasi barang dan harganya, kami akan membeli dengan pembayaran transfer ke toko.</li>
-      <li>Barang kami beli dan kami jual ke Anda dengan harga sesuai hasil perhitungan</li>
-    </ol>
-  
   </div>
 
   <div class="steps">
-    <h3>Kemudahan yang didapatkan</h3>
+    <h3>Skema Pembelian</h3>
     <ol>
-      <li>Boleh Tanpa DP/Uang muka</li>
-      <li>jika menggunakan DP akan meringankan cicilan bulanan</li>
-      <li>DP menjadi wajib jika disyaratkan oleh tim survei</li>
-    </ol>
- </div>
- <div class="steps">
-    <h3>Syarat Pengajuan kredit</h3>
-    <ol>
-      <li>Amanah</li>
-      <li>Bisa di hubungi</li>
-      <li>Memiliki WA aktif</li>
-      <li>Domisili di sangatta atau sekitarnya</li>
-      <li>Menginfokan jika pindah alamat atau ganti no HP</li>
-      <li>Siap melakukan pembayaran tepat waktu Via transfer pilih</li>
-      <ol type="a">
-        <li>BRI</li>
-        <li>BSI</li>
-      </ol>
-      <li>Siap dibuatkan grup wa peserta 2 orang</li>
-      <ol type="a">
-        <li>Pemohon</li>
-        <li>Admin KSS (Kredit Syariah Sangatta)</li>
-      </ol>
+      <li>Cara Pertama: Beritahu kami barang, toko, dan harga → kami beli lalu jual ke Anda.</li>
+      <li>Cara Kedua: Anda bersama kami ke toko → kami beli & jual ke Anda.</li>
+      <li>Cara Ketiga: Kami carikan barang → buat kesepakatan → beli & jual ke Anda.</li>
+      <li>Cara Keempat: Anda survei ke toko → kami transfer → beli & jual ke Anda.</li>
     </ol>
   </div>
-  
- <div class="steps">
-    <h3>Untuk melihat data konsumen</h3>
+
+  <div class="steps">
+    <h3>Kemudahan yang Didapat</h3>
+    <ul>
+      <li>Boleh tanpa DP / Uang muka</li>
+      <li>DP meringankan cicilan</li>
+      <li>DP wajib jika disyaratkan tim survei</li>
+    </ul>
+  </div>
+
+  <div class="steps">
+    <h3>Syarat Pengajuan Kredit</h3>
     <ol>
-      <li>Mintalah kode ke admin</li>
-      <li>simpan kode rehasia tersebut</li>
-      <li>masukkan ke kolom input cek data konsumen pada link dibawah</li>
+      <li>Amanah</li>
+      <li>Bisa dihubungi & punya WA aktif</li>
+      <li>Domisili di Sangatta atau sekitarnya</li>
+      <li>Siap bayar tepat waktu via transfer (BRI/BSI)</li>
+      <li>Siap dibuatkan grup WA 2 orang (Pemohon & Admin KSS)</li>
     </ol>
-</div>
-    <div class="main-container">
-        <div class="container">
-            <header>
-                <h1>Kredit Kutim Ringan</h1>
-                <p>Cek Data Cicilan</p>
-            </header>
-            
-            <div class="form-group">
-                <label for="kode">Masukkan Kode 8 Digit: (Minta ke Admin)</label>
-                <input type="text" id="kode" placeholder="Contoh: 23011188" maxlength="8">
-                <button onclick="cekData()">Cek Data</button>
-            </div>
-            
-            <div id="loading">Memeriksa data, harap tunggu...</div>
-            <div id="error"></div>
-            
-            <div id="hasil" class="data-container">
-                <div class="data-section">
-                    <h2>Detail Konsumen</h2>
-                    <div id="detailKonsumen"></div>
-                </div>
-                
-                <div class="data-section">
-                    <h2>Riwayat Pembayaran</h2>
-                    <div id="riwayatCicilan"></div>
-                </div>
-            </div>
-        </div>
-</div>
-   <script>
+  </div>
+
+  <!-- Cek Data Konsumen -->
+  <div class="container">
+    <h2>Cek Data Konsumen</h2>
+    <label for="kode">Masukkan Kode 8 Digit:</label>
+    <input type="text" id="kode" maxlength="8" placeholder="Contoh: 23011188">
+    <button onclick="cekData()">Cek Data</button>
+
+    <div id="loading">Memeriksa data...</div>
+    <div id="error"></div>
+
+    <div id="hasil" class="data-container">
+      <div class="data-section">
+        <h3>Detail Konsumen</h3>
+        <div id="detailKonsumen"></div>
+      </div>
+      <div class="data-section">
+        <h3>Riwayat Pembayaran</h3>
+        <div id="riwayatCicilan"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WA Button -->
+  <a id="wa-button" href="https://wa.me/6282352680715?text=Assalamualaikum%0ASaya%0ANama%20%3A%20%0ABisakah%20saya%20mendapatkan%20info%20tentang%20kredit.." target="_blank">
+    💬 Chat Admin Widiya
+  </a>
+
+  <footer>
+    <p>© 2023 Kredit Syariah Sangatta - Supported by Widiya</p>
+  </footer>
+
+  <script>
     function pembulatanRibuan(nilai) {
       return Math.floor(nilai / 1000) * 1000;
     }
@@ -191,91 +259,71 @@
       `;
     }
 
-      async function cekData() {
-            const kode = document.getElementById('kode').value.trim();
-            const loading = document.getElementById('loading');
-            const error = document.getElementById('error');
-            const hasil = document.getElementById('hasil');
-            
-            // Sembunyikan pesan error dan hasil sebelumnya
-            error.style.display = 'none';
-            hasil.style.display = 'none';
-            
-            // Validasi kode
-            if (!kode || kode.length !== 8) {
-                error.textContent = 'Kode harus terdiri dari 8 digit';
-                error.style.display = 'block';
-                return;
-            }
-            
-            // Tampilkan loading
-            loading.style.display = 'block';
-            
-            try {
-                // Panggil Google Apps Script API
-                const url = `https://script.google.com/macros/s/AKfycbz5VJRylw-dvset6w_JhzVkgUZ1zW5viLtJTKDS7hPSgHuRDBu3vYxqBEHu4cqebfxu/exec?kode=${kode}`;
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                
-                const data = await response.json();
-                
-                // Sembunyikan loading
-                loading.style.display = 'none';
-                
-                if (data.status === 'success') {
-                    // Tampilkan data konsumen
-                    let htmlKonsumen = '';
-                    
-                    for (const [key, value] of Object.entries(data.data)) {
-                        // Skip riwayat pembayaran (ditampilkan terpisah)
-                        if (key === 'riwayat') continue;
-                        
-                        htmlKonsumen += `
-                            <div class="data-item">
-                                <span class="data-label">${key.charAt(0).toUpperCase() + key.slice(1)}: </span>
-                                <span class="data-value">${value}</span>
-                            </div>
-                        `;
-                    }
-                    
-                    document.getElementById('detailKonsumen').innerHTML = htmlKonsumen;
-                    
-                    // Tampilkan riwayat cicilan jika ada
-                    let htmlRiwayat = '';
-                    if (data.riwayat && data.riwayat.length > 0) {
-                        data.riwayat.forEach(item => {
-                            htmlRiwayat += `
-                                <div class="data-item">
-                                    <span class="data-label">${item.bulan}: </span>
-                                    <span class="data-value">${item.status} (${item.tanggal})</span>
-                                </div>
-                            `;
-                        });
-                    } else {
-                        htmlRiwayat = '<p>Tidak ada riwayat pembayaran</p>';
-                    }
-                    
-                    document.getElementById('riwayatCicilan').innerHTML = htmlRiwayat;
-                    
-                    // Tampilkan hasil
-                    hasil.style.display = 'block';
-                } else {
-                    error.textContent = data.message || 'Kode tidak ditemukan. Pastikan kode yang dimasukkan benar.';
-                    error.style.display = 'block';
-                }
-            } catch (err) {
-                loading.style.display = 'none';
-                error.textContent = 'Terjadi kesalahan saat mengambil data. Silakan coba lagi.';
-                error.style.display = 'block';
-                console.error('Error:', err);
-            }
-        }
+    async function cekData() {
+      const kode = document.getElementById('kode').value.trim();
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const hasil = document.getElementById('hasil');
 
-     
-   </script>
-  
+      error.style.display = 'none';
+      hasil.style.display = 'none';
+
+      if (!kode || kode.length !== 8) {
+        error.textContent = 'Kode harus 8 digit';
+        error.style.display = 'block';
+        return;
+      }
+
+      loading.style.display = 'block';
+
+      try {
+        const url = `https://script.google.com/macros/s/AKfycbz5VJRylw-dvset6w_JhzVkgUZ1zW5viLtJTKDS7hPSgHuRDBu3vYxqBEHu4cqebfxu/exec?kode=${kode}`;
+        const response = await fetch(url);
+
+        if (!response.ok) throw new Error('Network error');
+
+        const data = await response.json();
+        loading.style.display = 'none';
+
+        if (data.status === 'success') {
+          let htmlKonsumen = '';
+          for (const [key, value] of Object.entries(data.data)) {
+            if (key === 'riwayat') continue;
+            htmlKonsumen += `
+              <div class="data-item">
+                <span class="data-label">${key}: </span>
+                <span class="data-value">${value}</span>
+              </div>
+            `;
+          }
+          document.getElementById('detailKonsumen').innerHTML = htmlKonsumen;
+
+          let htmlRiwayat = '';
+          if (data.riwayat && data.riwayat.length > 0) {
+            data.riwayat.forEach(item => {
+              htmlRiwayat += `
+                <div class="data-item">
+                  <span class="data-label">${item.bulan}: </span>
+                  <span class="data-value">${item.status} (${item.tanggal})</span>
+                </div>
+              `;
+            });
+          } else {
+            htmlRiwayat = '<p>Tidak ada riwayat pembayaran</p>';
+          }
+          document.getElementById('riwayatCicilan').innerHTML = htmlRiwayat;
+
+          hasil.style.display = 'block';
+        } else {
+          error.textContent = data.message || 'Kode tidak ditemukan.';
+          error.style.display = 'block';
+        }
+      } catch (err) {
+        loading.style.display = 'none';
+        error.textContent = 'Terjadi kesalahan, coba lagi.';
+        error.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
