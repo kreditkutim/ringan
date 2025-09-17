@@ -1,4 +1,4 @@
- <script>
+ 
 // =========================
 // Helper Functions
 // =========================
@@ -195,4 +195,3 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
- </script>
