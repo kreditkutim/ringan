@@ -64,11 +64,11 @@ body {
     input {
       width: 90%;
       max-width: 400px
-      padding: 12px;
+      padding: 14px;
       border: 2px solid #ddd;
       border-radius: 8px;
       margin-bottom: 15px;
-      font-size: 1rem;
+      font-size: 1.3rem;
     }
 
     input:focus {
