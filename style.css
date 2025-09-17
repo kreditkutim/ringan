@@ -12,6 +12,9 @@ body {
     padding: 15px;
     line-height: 1.6;
     min-height: 100vh;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* container utama */
@@ -32,16 +35,7 @@ body {
     margin-bottom: 20px;
 }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      background: linear-gradient(135deg, #2c7da0, #1a4c68);
-      background-attachment: fixed;
-      padding: 15px;
-      min-height: 100vh;
-    }
-
-    h1, h2, h3 {
+     h1, h2, h3 {
       color: #0000FF;
       margin-bottom: 10px;
     }
