@@ -181,4 +181,13 @@ body {
 .menu-content a:hover {
   background: #f0f0f0;
 }
+#floating-links {
+  display: none;
+  flex-direction: column;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+}
 
