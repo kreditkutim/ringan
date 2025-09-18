@@ -15,6 +15,7 @@ body {
    display: flex;
   flex-direction: column;
   align-items: center;
+ padding-bottom: 120px; /* biar footer tidak ketutup tombol WA */
 }
 
 /* container utama */
@@ -132,7 +133,7 @@ body {
   color: #fff;
   font-size: 0.9rem;
   position: relative;
-  bottom: 20px; /* naikin footer */
+  bottom: 50px; /* naikin footer */
 }
 
  .floating-menu {
