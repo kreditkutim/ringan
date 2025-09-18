@@ -136,44 +136,51 @@ body {
   bottom: 50px; /* naikin footer */
 }
 
- .floating-menu {
+/* Floating Menu */
+.floating-menu {
   position: fixed;
-  top: 20px;
+  top: 20px;     /* selalu di atas */
   right: 20px;
-  z-index: 2000; /* biar selalu di atas */
+  z-index: 2000;
   text-align: right;
-  display: block; /* pastikan selalu tampil */
 }
 
 .floating-btn {
   background: #2c7da0;
-  color: white;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
+  padding: 12px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-#floating-links {
+.floating-btn img.icon-buku {
+  width: 28px;
+  height: 28px;
+}
+
+.floating-links {
   display: none;
   flex-direction: column;
+  margin-top: 10px;
   background: white;
-  border: 1px solid #ccc;
-  margin-top: 8px;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  overflow: hidden;
 }
 
-#floating-links a {
+.floating-links a {
+  padding: 10px 15px;
   text-decoration: none;
-  color: #2c7da0;
-  padding: 5px 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
 }
 
-#floating-links a:hover {
-  text-decoration: underline;
+.floating-links a:last-child {
+  border-bottom: none;
 }
+
+.floating-links a:hover {
+  background: #f2f2f2;
+}
+
