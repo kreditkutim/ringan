@@ -139,7 +139,7 @@ body {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .floating-btn {
