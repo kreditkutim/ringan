@@ -1,145 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
 body {
-    background: linear-gradient(135deg, #2c7da0 0%, #1a4c68 100%);
-    background-attachment: fixed;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    padding: 15px;
-    line-height: 1.6;
-    min-height: 100vh;
-   display: flex;
+  background: linear-gradient(135deg, #2c7da0 0%, #1a4c68 100%);
+  background-attachment: fixed;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
   align-items: center;
- padding-bottom: 120px; /* biar footer tidak ketutup tombol WA */
+  padding: 15px;
+  padding-bottom: 140px; /* kasih space lebih biar footer + WA button aman */
 }
 
 /* container utama */
 .main-container {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .container {
-    width: 100%;
-    background-color: #fff;
-    padding: 20px;
-    border: 2px solid #0000FF;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    color: #333;
-    margin-bottom: 20px;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border: 2px solid #0000FF;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: #333;
+  margin-bottom: 20px;
 }
 
-     h1, h2, h3 {
-      color: #0000FF;
-      margin-bottom: 10px;
-    }
+h1, h2, h3 {
+  color: #0000FF;
+  margin-bottom: 10px;
+}
 
-    .info-box, .container, .steps {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-bottom: 25px;
-    }
+.info-box, .container, .steps {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+}
 
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
 
-    input {
-      width: 90%;
-      max-width: 400px
-      padding: 14px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      font-size: 1.3rem;
-    }
+input {
+  width: 90%;
+  max-width: 400px; /* ada titik koma yang hilang sebelumnya */
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
 
-    input:focus {
-      border-color: #2c7da0;
-      outline: none;
-    }
+input:focus {
+  border-color: #2c7da0;
+  outline: none;
+}
 
-    button {
-      background: linear-gradient(to bottom, #2c7da0, #1a4c68);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
+button {
+  background: linear-gradient(to bottom, #2c7da0, #1a4c68);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(to bottom, #3a8cb0, #2a5c80);
-    }
+button:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(to bottom, #3a8cb0, #2a5c80);
+}
 
-    #wa-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+#wa-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-    #wa-button:hover {
-      background-color: #1eb154;
-    }
+#wa-button:hover {
+  background-color: #1eb154;
+}
 
-    #loading, #error {
-      display: none;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-    }
+#loading, #error {
+  display: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+}
 
-    #loading { background: #e3f2fd; color: #0d47a1; }
-    #error { background: #ffebee; color: #c62828; }
+#loading { background: #e3f2fd; color: #0d47a1; }
+#error { background: #ffebee; color: #c62828; }
 
-    .data-container { display: none; margin-top: 20px; }
-    .data-section { margin-bottom: 20px; }
-    .data-item { margin-bottom: 8px; }
-    .data-label { font-weight: bold; }
-    .data-value { color: #1a4c68; }
+.data-container { display: none; margin-top: 20px; }
+.data-section { margin-bottom: 20px; }
+.data-item { margin-bottom: 8px; }
+.data-label { font-weight: bold; }
+.data-value { color: #1a4c68; }
 
-   footer {
+footer {
   text-align: center;
-  margin-top: 20px;
+  margin-top: auto;   /* dorong ke bawah */
   padding: 20px;
   color: #fff;
   font-size: 0.9rem;
-  position: relative;
-  bottom: 50px; /* naikin footer */
 }
 
 /* Floating Menu */
 .floating-menu {
   position: fixed;
-  top: 20px;     /* selalu di atas */
+  top: 20px;   /* selalu nongol di kanan atas */
   right: 20px;
   z-index: 2000;
   text-align: right;
@@ -183,4 +181,3 @@ body {
 .floating-links a:hover {
   background: #f2f2f2;
 }
-
