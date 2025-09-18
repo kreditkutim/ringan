@@ -125,15 +125,15 @@ body {
     .data-label { font-weight: bold; }
     .data-value { color: #1a4c68; }
 
-    footer {
-      text-align: center;
-      margin-top: 20px;
-      padding: 20px;
-      color: #fff;
-      font-size: 0.9rem;
-      margin-bottom: 70px;
-    }
-
+   footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px;
+  color: #fff;
+  font-size: 0.9rem;
+  position: relative;
+  bottom: 20px; /* naikin footer */
+}
 
  .floating-menu {
   position: fixed;
