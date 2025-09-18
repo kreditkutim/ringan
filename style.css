@@ -134,37 +134,51 @@ body {
     }
 
 
-  .floating-btn {
+  /* Floating button */
+.floating-menu {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  z-index: 1000;
+}
+
+.floating-btn {
   background: #2c7da0;
   color: white;
-  font-size: 24px;
   border: none;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  font-size: 22px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background 0.3s;
 }
-.floating-links {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
+
+.floating-btn:hover {
+  background: #1a4c68;
+}
+
+/* Hidden menu content */
+.menu-content {
   display: none;
   flex-direction: column;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+  padding: 10px;
 }
-.floating-links a {
-  padding: 10px 15px;
+
+.menu-content a {
   text-decoration: none;
-  color: #2c7da0;
-  border-bottom: 1px solid #eee;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
-.floating-links a:hover {
-  background: #2c7da0;
-  color: white;
+
+.menu-content a:hover {
+  background: #f0f0f0;
 }
+
