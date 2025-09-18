@@ -141,6 +141,7 @@ body {
   right: 20px;
   z-index: 2000; /* biar selalu di atas */
   text-align: right;
+  display: block; /* pastikan selalu tampil */
 }
 
 .floating-btn {
