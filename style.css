@@ -181,3 +181,23 @@ footer {
 .floating-links a:hover {
   background: #f2f2f2;
 }
+/* Paksa floating selalu fixed kanan atas, semua ukuran layar */
+.floating-menu {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: 2000 !important;
+}
+
+/* Pastikan link di dalamnya gak berubah jadi full menu */
+.floating-links {
+  position: absolute;
+  top: 60px; /* jarak di bawah tombol */
+  right: 0;
+  display: none;
+  flex-direction: column;
+  width: 180px; /* biar rapi */
+}
+
