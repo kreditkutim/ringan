@@ -1,4 +1,4 @@
-  <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -132,4 +132,39 @@ body {
       color: #fff;
       font-size: 0.9rem;
     }
-  </style>
+
+
+  .floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #2c7da0;
+  color: white;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.floating-links {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  display: none;
+  flex-direction: column;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.floating-links a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #2c7da0;
+  border-bottom: 1px solid #eee;
+}
+.floating-links a:hover {
+  background: #2c7da0;
+  color: white;
+}
