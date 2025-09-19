@@ -52,3 +52,21 @@ function toggleMenu() {
   const menu = document.getElementById("floating-links");
   menu.style.display = (menu.style.display === "block") ? "none" : "block";
 }
+// === Panel Konten Dinamis ===
+function bukaPanel(file) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("isiPanel").innerHTML = html;
+      document.getElementById("panelKonten").style.display = "block";
+    })
+    .catch(err => {
+      document.getElementById("isiPanel").innerHTML = "<p>Gagal memuat konten.</p>";
+      document.getElementById("panelKonten").style.display = "block";
+    });
+}
+
+function tutupPanel() {
+  document.getElementById("panelKonten").style.display = "none";
+  document.getElementById("isiPanel").innerHTML = "";
+}
