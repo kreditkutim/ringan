@@ -27,3 +27,23 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.error("SW gagal:", err));
   });
 }
+// Tombol update manual
+const updateBtn = document.getElementById("updateBtn");
+if (updateBtn) {
+  updateBtn.addEventListener("click", async () => {
+    if ("serviceWorker" in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (let reg of regs) {
+        await reg.unregister(); // hapus worker lama
+      }
+      caches.keys().then(keys => {
+        keys.forEach(key => caches.delete(key)); // hapus cache lama
+      });
+      alert("Aplikasi diperbarui! Silakan muat ulang halaman.");
+      location.reload(true); // paksa reload ambil versi terbaru
+    } else {
+      alert("Browser tidak mendukung Service Worker.");
+    }
+  });
+}
+
