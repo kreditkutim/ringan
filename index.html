@@ -115,17 +115,44 @@
   <footer>
     <p>© 2023 Kredit Syariah Sangatta - Supported by Widiya</p>
   </footer>
+<!-- Panel Konten Dinamis -->
+<div id="panelKonten" style="
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+  overflow-y: auto;
+  padding: 20px;
+  display: none;
+  z-index: 999;
+">
+  <button onclick="tutupPanel()" style="
+    float: right;
+    background: #2c7da0;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  ">❌ Tutup</button>
+  <div id="isiPanel"></div>
+</div>
 
+  
 <!-- Floating Menu -->
 <div class="floating-menu">
   <button class="floating-btn" onclick="toggleMenu()">
     <img src="book.png" alt="Menu" class="icon-buku">
   </button>
-  <div class="floating-links" id="floating-links">
-    <a href="pertanyaan.html">❓ Pertanyaan</a>
-    <a href="tentang.html">ℹ️ Tentang Kami</a>
-    <a href="testimoni.html">⭐ Testimoni</a>
   </div>
+<div class="floating-links" id="floating-links">
+  <button onclick="bukaPanel('pertanyaan.html')">❓ Pertanyaan</button>
+  <button onclick="bukaPanel('tentang.html')">ℹ️ Tentang Kami</button>
+  <button onclick="bukaPanel('testimoni.html')">⭐ Testimoni</button>
 </div>
 
 
