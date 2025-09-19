@@ -172,25 +172,6 @@
             <p class="footer-credit">Supported by <strong>Widiya</strong></p>
         </footer>
     </div>
-    <script>
-    let deferredPrompt;
-    const installBtn = document.getElementById("installBtn");
-    installBtn.style.display = "none"; // awalnya disembunyikan
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        installBtn.style.display = "block"; // tampilkan tombol kalau bisa install
-    });
-
-    installBtn.addEventListener("click", async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            console.log(`User response to the install prompt: ${outcome}`);
-            deferredPrompt = null;
-        }
-    });
-</script>
+    <script src="app.js"></script>
 </body>
 </html>
