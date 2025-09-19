@@ -183,16 +183,6 @@ function hitungCicilanTerakhirBulan(tanggalMulai, lamaBulan) {
   return mulaiDate.toLocaleDateString("id-ID", options);
 }
 
-// ======================
-// Service Worker
-// ======================
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.getRegistrations().then(function (registrations) {
-    for (let registration of registrations) {
-      registration.unregister();
-      console.log("Service Worker unregistered for update");
-    }
-  });
 
   window.addEventListener("load", function () {
     navigator.serviceWorker
