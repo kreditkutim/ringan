@@ -1,49 +1,64 @@
-let deferredPrompt;
-const installBtn = document.getElementById("installBtn");
+console.log("App.js jalan...");
 
-// Tangkap event sebelum install muncul
+// Variabel untuk simpan event install
+let deferredPrompt;
+
+// Tombol
+const installBtn = document.getElementById("installBtn");
+const updateBtn = document.getElementById("updateBtn");
+
+// Awalnya sembunyikan tombol install
+if (installBtn) {
+  installBtn.style.display = "none";
+}
+
+// --- Install Aplikasi ---
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installBtn.style.display = "block"; // tampilkan tombol install
+  console.log("beforeinstallprompt ditangkap");
+
+  if (installBtn) {
+    installBtn.style.display = "inline-block"; // tampilkan tombol
+  }
 });
 
-// Klik tombol install
-installBtn.addEventListener("click", async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  console.log("User response:", outcome);
-  deferredPrompt = null;
-  installBtn.style.display = "none";
-});
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log("User memilih:", outcome);
+      deferredPrompt = null;
+      installBtn.style.display = "none"; // sembunyikan lagi setelah klik
+    }
+  });
+}
 
-// Service Worker register
+// --- Update Aplikasi ---
+if (updateBtn) {
+  updateBtn.addEventListener("click", () => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister().then(() => {
+            console.log("Service Worker unregistered. Reload halaman...");
+            window.location.reload(true);
+          });
+        }
+      });
+    } else {
+      console.log("Service Worker tidak tersedia di browser ini.");
+    }
+  });
+}
+
+// --- Daftarkan Service Worker ---
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("service-worker.js")
       .then((reg) => console.log("Service Worker terdaftar:", reg.scope))
-      .catch((err) => console.error("SW gagal:", err));
+      .catch((err) => console.error("Service Worker gagal:", err));
   });
 }
-// Tombol update manual
-const updateBtn = document.getElementById("updateBtn");
-if (updateBtn) {
-  updateBtn.addEventListener("click", async () => {
-    if ("serviceWorker" in navigator) {
-      const regs = await navigator.serviceWorker.getRegistrations();
-      for (let reg of regs) {
-        await reg.unregister(); // hapus worker lama
-      }
-      caches.keys().then(keys => {
-        keys.forEach(key => caches.delete(key)); // hapus cache lama
-      });
-      alert("Aplikasi diperbarui! Silakan muat ulang halaman.");
-      location.reload(true); // paksa reload ambil versi terbaru
-    } else {
-      alert("Browser tidak mendukung Service Worker.");
-    }
-  });
-}
-
