@@ -199,4 +199,6 @@ function toggleMenu() {
   const menu = document.getElementById("floating-links");
   menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
 }
+// taruh semua logika aplikasi kamu di sini
+console.log("Script utama jalan...");
 
