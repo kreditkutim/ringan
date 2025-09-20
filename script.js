@@ -1,6 +1,5 @@
 console.log("Script utama jalan...");
 
-
 // === Hitung Cicilan ===
 function hitungCicilan() {
   const hargaBarang = parseInt(document.getElementById("hargaBarang").value) || 0;
