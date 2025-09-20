@@ -70,3 +70,20 @@ function tutupPanel() {
   document.getElementById("panelKonten").style.display = "none";
   document.getElementById("isiPanel").innerHTML = "";
 }
+// === Format angka ribuan saat diketik ===
+document.querySelectorAll('.format-rupiah').forEach(input => {
+  input.addEventListener('input', function () {
+    let angka = this.value.replace(/[^0-9]/g, '');
+    this.value = formatAngka(angka);
+  });
+});
+
+function formatAngka(angka) {
+  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+// === Ambil nilai asli untuk perhitungan ===
+function getAngka(id) {
+  const val = document.getElementById(id).value;
+  return parseFloat(val.replace(/\./g, '')) || 0;
+}
