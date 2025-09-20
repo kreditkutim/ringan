@@ -35,7 +35,7 @@ function hitungCicilan() {
   }
 
   if (lama > 12) {
-    hasil.innerHTML = "<b>Maaf, maksimal cicilan 12 bulan.</b>";
+    hasil.innerHTML = "<b>Maaf, lebih dari 12 bulan hubungi Admin.</b>";
     return;
   }
 
