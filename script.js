@@ -9,7 +9,7 @@ document.querySelectorAll('.format-rupiah').forEach(input => {
 });
 
 function formatAngka(angka) {
-  return angka.replauce(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
 // === Ambil nilai asli untuk perhitungan ===
@@ -35,7 +35,7 @@ function hitungCicilan() {
   }
 
   if (lama > 12) {
-    hasil.innerHTML = "<b>Maaf, lebih dari 12 bulan hubungi Admin.</b>";
+    hasil.innerHTML = "<b>Maaf, lebih 12 bulan hubungi Admin.</b>";
     return;
   }
 
