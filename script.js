@@ -60,20 +60,127 @@ const hargaJualSementara = hargaSetelahDP * faktor;
 
 // === Cek Data Konsumen (Simulasi) ===
 function cekData() {
+async function cekData() {
   const kode = document.getElementById("kode").value.trim();
-  const loading = document.getElementById("loading");
-  const error = document.getElementById("error");
-  const hasil = document.getElementById("hasil");
+  const errorDiv = document.getElementById("error");
+  const loadingDiv = document.getElementById("loading");
+  const hasilDiv = document.getElementById("hasil");
 
-  if (!kode) {
-    error.innerText = "Kode wajib diisi.";
+  errorDiv.style.display = "none";
+  hasilDiv.style.display = "none";
+  loadingDiv.style.display = "block";
+
+  if (!/^[A-Za-z0-9]{8}$/.test(kode)) {
+    showError("Format kode harus 8 karakter huruf/angka");
+    loadingDiv.style.display = "none";
     return;
   }
 
-  loading.style.display = "block";
-  error.innerText = "";
-  hasil.style.display = "none";
+  try {
+    const url = `https://script.google.com/macros/s/AKfycbz5VJRylw-dvset6w_JhzVkgUZ1zW5viLtJTKDS7hPSgHuRDBu3vYxqBEHu4cqebfxu/exec?kode=${kode}`;
+    const response = await fetch(url);
 
+    if (!response.ok) {
+      throw new Error("Gagal mengambil data");
+    }
+
+    const data = await response.json();
+
+    if (data.error) {
+      throw new Error(data.error);
+    }
+
+    tampilkanData(data.data);
+
+  } catch (error) {
+    showError(error.message);
+  } finally {
+    loadingDiv.style.display = "none";
+  }
+}
+
+function showError(message) {
+  const errorDiv = document.getElementById("error");
+  errorDiv.textContent = message;
+  errorDiv.style.display = "block";
+}
+
+function tampilkanData(data) {
+  const formatRupiah = (angka) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      minimumFractionDigits: 0
+    }).format(angka);
+  };
+
+  const toNumber = (val) => {
+    if (!val) return 0;
+    return Number(val.toString().replace(/[^0-9]/g, ""));
+  };
+
+  const cekStatus = (harga, totalBayar) => {
+    const hargaNum = toNumber(harga);
+    const totalBayarNum = toNumber(totalBayar);
+    return totalBayarNum >= hargaNum
+      ? '<span class="status-lunas">LUNAS</span>'
+      : '<span class="status-belum">BELUM LUNAS</span>';
+  };
+
+  const hitungCicilanTerakhirBulan = (tanggalMulai, lamaBulan) => {
+    if (!tanggalMulai || !lamaBulan) return '-';
+    const parts = tanggalMulai.split('/');
+    if (parts.length !== 3) return '-';
+    const month = parseInt(parts[1], 10) - 1;
+    const year = parseInt(parts[2], 10);
+    const mulaiDate = new Date(year, month, 1);
+    mulaiDate.setMonth(mulaiDate.getMonth() + parseInt(lamaBulan, 10));
+    const options = { month: 'long', year: 'numeric' };
+    return mulaiDate.toLocaleDateString('id-ID', options);
+  };
+
+  const harga = toNumber(data.harga);
+  const cicilanPerBulan = toNumber(data.cicilanPerBulan);
+  const totalBayar = toNumber(data.totalBayar);
+  const sisaBayar = harga - totalBayar;
+
+  document.getElementById("detailKonsumen").innerHTML = `
+    <p><strong>Kode:</strong> ${data.kode || '-'}</p>
+    <p><strong>Nama:</strong> ${data.nama || '-'}</p>
+    <p><strong>Barang:</strong> ${data.barang || '-'}</p>
+    <p><strong>Harga:</strong> ${harga ? formatRupiah(harga) : '-'}</p>
+    <p><strong>Cicilan per Bulan:</strong> ${cicilanPerBulan ? formatRupiah(cicilanPerBulan) : '-'}</p>
+    <p><strong>Lama Cicilan:</strong> ${data.lamaBulan || '-'} bulan</p>
+    <p><strong>Cicilan Terakhir:</strong> ${hitungCicilanTerakhirBulan(data.tanggalMulai, data.lamaBulan)}</p>
+    <p><strong>Status:</strong> ${cekStatus(harga, totalBayar)}</p>
+    <p><strong>Total Dibayar:</strong> ${totalBayar ? formatRupiah(totalBayar) : '-'}</p>
+    <p><strong>Sisa Pembayaran:</strong> ${sisaBayar ? formatRupiah(sisaBayar) : '-'}</p>
+  `;
+
+  const riwayatDiv = document.getElementById("riwayatCicilan");
+  if (data.cicilan && data.cicilan.length > 0) {
+    riwayatDiv.innerHTML = data.cicilan.map((cicilan, index) => {
+      const nominal = toNumber(cicilan.nominal);
+      return `
+        <div class="cicilan-item" style="
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          padding: 10px;
+          margin-bottom: 10px;
+          background: #f9f9f9;
+        ">
+          <p><strong>Bulan ke-${index + 1}</strong></p>
+          <p><strong>Tanggal:</strong> ${cicilan.tanggal || '-'}</p>
+          <p><strong>Nominal:</strong> ${nominal ? formatRupiah(nominal) : '-'}</p>
+        </div>
+      `;
+    }).join('');
+  } else {
+    riwayatDiv.innerHTML = "<p>Belum ada riwayat pembayaran</p>";
+  }
+
+  document.getElementById("hasil").style.display = "block";
+}
   // Simulasi data
   setTimeout(() => {
     loading.style.display = "none";
