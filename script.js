@@ -1,5 +1,23 @@
 console.log("Script utama jalan...");
 
+// === Format angka ribuan saat diketik ===
+document.querySelectorAll('.format-rupiah').forEach(input => {
+  input.addEventListener('input', function () {
+    let angka = this.value.replace(/[^0-9]/g, '');
+    this.value = formatAngka(angka);
+  });
+});
+
+function formatAngka(angka) {
+  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+// === Ambil nilai asli untuk perhitungan ===
+function getAngka(id) {
+  const val = document.getElementById(id).value;
+  return parseFloat(val.replace(/\./g, '')) || 0;
+}
+
 // === Hitung Cicilan ===
 function pembulatanRibuan(nilai) {
   return Math.floor(nilai / 1000) * 1000;
@@ -40,18 +58,7 @@ function hitungCicilan() {
   `;
 }
 
-document.querySelectorAll('.format-rupiah').forEach(input => {
-  input.addEventListener('input', function () {
-    let angka = this.value.replace(/[^0-9]/g, '');
-    this.value = formatAngka(angka);
-  });
-});
-
-function formatAngka(angka) {
-  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-}
-
-// === Cek Data Konsumen ===
+// === Cek Data Konsumen (Simulasi) ===
 function cekData() {
   const kode = document.getElementById("kode").value.trim();
   const loading = document.getElementById("loading");
@@ -83,8 +90,9 @@ function cekData() {
 // === Floating Menu Toggle ===
 function toggleMenu() {
   const menu = document.getElementById("floating-links");
-  menu.style.display = (menu.style.display === "block") ? "none" : "block";
+  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
 }
+
 // === Panel Konten Dinamis ===
 function bukaPanel(file) {
   fetch(file)
@@ -102,21 +110,4 @@ function bukaPanel(file) {
 function tutupPanel() {
   document.getElementById("panelKonten").style.display = "none";
   document.getElementById("isiPanel").innerHTML = "";
-}
-// === Format angka ribuan saat diketik ===
-document.querySelectorAll('.format-rupiah').forEach(input => {
-  input.addEventListener('input', function () {
-    let angka = this.value.replace(/[^0-9]/g, '');
-    this.value = formatAngka(angka);
-  });
-});
-
-function formatAngka(angka) {
-  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-}
-
-// === Ambil nilai asli untuk perhitungan ===
-function getAngka(id) {
-  const val = document.getElementById(id).value;
-  return parseFloat(val.replace(/\./g, '')) || 0;
 }
