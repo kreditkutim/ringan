@@ -9,7 +9,7 @@ document.querySelectorAll('.format-rupiah').forEach(input => {
 });
 
 function formatAngka(angka) {
-  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return angka.replauce(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
 // === Ambil nilai asli untuk perhitungan ===
@@ -47,7 +47,7 @@ function hitungCicilan() {
   const hargaJualFinal = cicilanFinal * lama;
 
   const tanggalSekarang = new Date();
-  tanggalSekarang.setMonth(tanggalSekarang.getMonth() + lama);
+  tanggalSekarang.setMonth(tanggalSekarang.getMonth() + (lama - 1));
   const opsiTanggal = { month: 'long', year: 'numeric' };
   const batasAkhir = tanggalSekarang.toLocaleDateString('id-ID', opsiTanggal);
 
