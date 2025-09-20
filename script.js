@@ -47,7 +47,7 @@ function hitungCicilan() {
   const hargaJualFinal = cicilanFinal * lama;
 
   const tanggalSekarang = new Date();
-  tanggalSekarang.setMonth(tanggalSekarang.getMonth() + (lama - 1));
+  tanggalSekarang.setMonth(tanggalSekarang.getMonth() + (lama + 1));
   const opsiTanggal = { month: 'long', year: 'numeric' };
   const batasAkhir = tanggalSekarang.toLocaleDateString('id-ID', opsiTanggal);
 
