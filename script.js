@@ -74,6 +74,19 @@ function cekData() {
   error.innerText = "";
   hasil.style.display = "none";
 
+  // Simulasi data
+  setTimeout(() => {
+    loading.style.display = "none";
+    if (kode === "23011188") {
+      hasil.style.display = "block";
+      document.getElementById("detailKonsumen").innerText = "Nama: Budi - Barang: HP Samsung";
+      document.getElementById("riwayatCicilan").innerText = "Sudah membayar 3x cicilan dari 10 bulan.";
+    } else {
+      error.innerText = "Data tidak ditemukan.";
+    }
+  }, 1000);
+}
+
 // === Floating Menu Toggle ===
 function toggleMenu() {
   const menu = document.getElementById("floating-links");
