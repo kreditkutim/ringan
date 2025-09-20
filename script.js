@@ -1,21 +1,54 @@
 console.log("Script utama jalan...");
 
 // === Hitung Cicilan ===
-function hitungCicilan() {
-  const hargaBarang = parseInt(document.getElementById("hargaBarang").value) || 0;
-  const lamaCicilan = parseInt(document.getElementById("lamaCicilan").value) || 0;
-  const dp = parseInt(document.getElementById("dp").value) || 0;
+function pembulatanRibuan(nilai) {
+  return Math.floor(nilai / 1000) * 1000;
+}
 
-  if (hargaBarang <= 0 || lamaCicilan <= 0) {
-    document.getElementById("hasilCicilan").innerHTML = "<p style='color:red'>Masukkan data dengan benar.</p>";
+function hitungCicilan() {
+  const harga = getAngka('hargaBarang');
+  const lama = parseInt(document.getElementById('lamaCicilan').value);
+  const dp = getAngka('dp');
+  const hasil = document.getElementById('hasilCicilan');
+
+  if (isNaN(harga) || isNaN(lama)) {
+    hasil.innerHTML = "Harap isi Harga dan Lama Cicilan.";
     return;
   }
 
-  const sisa = hargaBarang - dp;
-  const cicilan = sisa / lamaCicilan;
+  if (lama > 12) {
+    hasil.innerHTML = "<b>Maaf, maksimal cicilan 12 bulan.</b>";
+    return;
+  }
 
-  document.getElementById("hasilCicilan").innerHTML =
-    `<p>Total: Rp${sisa.toLocaleString()}<br>Cicilan per bulan: Rp${cicilan.toLocaleString()}</p>`;
+  let faktor = (lama <= 5) ? 1.125 : 1 + (lama * 0.025);
+  const hargaSetelahDP = harga - dp;
+  const hargaJualSementara = hargaSetelahDP * faktor;
+  const cicilanAwal = hargaJualSementara / lama;
+  const cicilanFinal = pembulatanRibuan(cicilanAwal);
+  const hargaJualFinal = cicilanFinal * lama;
+
+  const tanggalSekarang = new Date();
+  tanggalSekarang.setMonth(tanggalSekarang.getMonth() + lama);
+  const opsiTanggal = { month: 'long', year: 'numeric' };
+  const batasAkhir = tanggalSekarang.toLocaleDateString('id-ID', opsiTanggal);
+
+  hasil.innerHTML = `
+    <p><b>Harga Jual:</b> Rp ${hargaJualFinal.toLocaleString('id-ID')}</p>
+    <p><b>Cicilan Bulanan:</b> Rp ${cicilanFinal.toLocaleString('id-ID')}</p>
+    <p><b>Batas Akhir Cicilan:</b> ${batasAkhir}</p>
+  `;
+}
+
+document.querySelectorAll('.format-rupiah').forEach(input => {
+  input.addEventListener('input', function () {
+    let angka = this.value.replace(/[^0-9]/g, '');
+    this.value = formatAngka(angka);
+  });
+});
+
+function formatAngka(angka) {
+  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
 // === Cek Data Konsumen ===
