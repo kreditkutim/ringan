@@ -118,13 +118,20 @@ function tampilkanData(data) {
     return Number(val.toString().replace(/[^0-9]/g, ""));
   };
 
-  const cekStatus = (harga, totalBayar) => {
-    const hargaNum = toNumber(harga);
-    const totalBayarNum = toNumber(totalBayar);
-    return totalBayarNum >= hargaNum
-      ? '<span class="status-lunas">LUNAS</span>'
-      : '<span class="status-belum">BELUM LUNAS</span>';
-  };
+ const cekStatus = (harga, totalBayar) => {
+  const hargaNum = toNumber(harga);
+  const totalBayarNum = toNumber(totalBayar);
+  const isLunas = totalBayarNum >= hargaNum;
+
+  return `<div style="
+    font-size: 1.4em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: ${isLunas ? 'green' : 'red'};
+  ">
+    ${isLunas ? 'LUNAS' : 'BELUM LUNAS'}
+  </div>`;
+};
 
   const hitungCicilanTerakhirBulan = (tanggalMulai, lamaBulan) => {
     if (!tanggalMulai || !lamaBulan) return '-';
@@ -168,7 +175,7 @@ function tampilkanData(data) {
           margin-bottom: 10px;
           background: #f9f9f9;
         ">
-          <p><strong>Bulan ke-${index + 1}</strong></p>
+          <p><strong>Cicilan ke-${index + 1}</strong></p>
           <p><strong>Tanggal:</strong> ${cicilan.tanggal || '-'}</p>
           <p><strong>Nominal:</strong> ${nominal ? formatRupiah(nominal) : '-'}</p>
         </div>
