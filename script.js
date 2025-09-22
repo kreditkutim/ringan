@@ -202,6 +202,7 @@ function bukaPanel(file) {
     .then(html => {
       document.getElementById("isiPanel").innerHTML = html;
       document.getElementById("panelKonten").style.display = "block";
+      aktifkanAccordion(); // 🔥 aktifkan interaksi setelah konten dimuat
     })
     .catch(err => {
       document.getElementById("isiPanel").innerHTML = "<p>Gagal memuat konten.</p>";
@@ -209,7 +210,18 @@ function bukaPanel(file) {
     });
 }
 
+
 function tutupPanel() {
   document.getElementById("panelKonten").style.display = "none";
   document.getElementById("isiPanel").innerHTML = "";
 }
+
+function aktifkanAccordion() {
+  document.querySelectorAll('#isiPanel .accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const parent = header.parentElement;
+      parent.classList.toggle('active');
+    });
+  });
+}
+
