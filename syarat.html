@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pertanyaan Umum - Kredit Syariah Sangatta</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
 
+    h1 {
+      text-align: center;
+      color: #2c7da0;
+      margin-bottom: 30px;
+    }
+
+    .accordion {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      background: #2c7da0;
+      color: white;
+    }
+
+    .accordion-content {
+      padding: 15px 20px;
+      display: none;
+      background: #fff;
+      color: #333;
+      border-top: 1px solid #eee;
+    }
+
+    .accordion.active .accordion-content {
+      display: block;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <h1>Syarat</h1>
+
+  <div class="accordion">
+    <div class="accordion-header">Syarat pengajuan kredit</div>
+    <div class="accordion-content">
+
+      <ul>
+        <li>Amanah<li>
+ <li>Diutamakan ada yang merekomendasikan (Sementara terbaras)<li>
+ <li>Memiliki WA aktif<li>
+ <li>Bisa di hubungi<li>
+ <li>Siap dibuatkan grup wa peserta 2 orang<li>
+    <ol type="a"> 
+   <li>Pemohon<li>
+    <li>Admin KSS (Kredit Syariah Sangatta)<li>
+    </ol>
+ <li>Mengisi formular kesepakatan<li>
+ </ul>
+     
+    </div>
+  </div>
+
+
+  
+  <footer>
+    <p>© 2025 Kredit Syariah Sangatta. Supported by Widiya</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const parent = header.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
