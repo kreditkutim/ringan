@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kredit-kutim-ringan-v7';
+const cacheName = 'cache-v2.4'; // ubah setiap kali deploy
 const urlsToCache = [
   './',
   './index.html',
