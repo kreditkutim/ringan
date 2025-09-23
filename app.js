@@ -32,6 +32,25 @@ if (installBtn) {
   });
 }
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    // Paksa update worker jika ada versi baru
+    reg.update();
+
+    // Kirim pesan agar worker langsung aktif
+    if (reg.active) {
+      reg.active.postMessage({ type: 'SKIP_WAITING' });
+    }
+
+    // Terima pesan dari worker untuk reload halaman
+    navigator.serviceWorker.addEventListener('message', event => {
+      if (event.data && event.data.type === 'RELOAD_PAGE') {
+        window.location.reload();
+      }
+    });
+  });
+}
+
 // --- Daftarkan dan Deteksi Service Worker ---
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
