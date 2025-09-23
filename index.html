@@ -172,20 +172,11 @@
     flex-direction: column;
     padding: 10px;
   ">
-    <button onclick="bukaPanel('pertanyaan.html')" style="margin: 5px 0;">❓ Pertanyaan</button>
-    <button onclick="bukaPanel('tentang.html')" style="margin: 5px 0;">ℹ️ Tentang Kami</button>
-    <button onclick="bukaPanel('testimoni.html')" style="margin: 5px 0;">⭐ Testimoni</button>
+  <button onclick="bukaPanel('pertanyaan.html');sembunyikanMenu()">❓ Pertanyaan</button>
+  <button onclick="bukaPanel('tentang.html');sembunyikanMenu()">ℹ️ Tentang Kami</button>
+  <button onclick="bukaPanel('testimoni.html');sembunyikanMenu()">⭐ Testimoni</button>
   </div>
 </div>
-
-  
-  <button onclick="toggleMenu()">Menu</button>
-<div id="floating-links" style="display:none;">
-  <button onclick="bukaPanel('pertanyaan.html');sembunyikanMenu()">Pertanyaan</button>
-  <button onclick="bukaPanel('tentang.html');sembunyikanMenu()">Tentang Kami</button>
-  <button onclick="bukaPanel('testimoni.html');sembunyikanMenu()">Testimoni</button>
-</div>
-
 
 
 <!-- Font Awesome (buat icon buku) -->
