@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kredit-kutim-ringan-v2';
+const CACHE_NAME = 'kredit-kutim-ringan-v3';
 const urlsToCache = [
   './',
   './index.html',
