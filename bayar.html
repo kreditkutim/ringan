@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran - Kredit Syariah Sangatta</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #2c7da0;
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        padding-bottom: 140px; /* sesuaikan tinggi tombol floating */
+      }
+
+      h1 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 30px;
+      }
+      h2 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 30px;
+      }
+      .info-box,
+      .container,
+      .steps {
+        background: #2c7da0;
+        padding: 20px;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 25px;
+        margin-top: 40px;
+      }
+
+      footer {
+        margin-top: 80px;
+        text-align: center;
+        font-size: 14px;
+        color: #181515;
+      }
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 12px 0;
+      }
+      .value {
+        background: #2c7da0;
+        padding: 6px 10px;
+        border-radius: 6px;
+        user-select: all;
+      }
+      button.copy {
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Pembayaran</h1>
+    <h2>Cara melakkukan pembayaran cicilan KSS</h2>
+    <div class="steps">
+      <p>Transfer ke rekening • A/N: Widiya Ana Rachman:</p>
+      <div class="item">
+        <span>🏦</span>
+        <span class="value" id="bank"
+          >Rekening BRI: <strong>056301013447530</strong></span
+        >
+        <button class="copy" data-target="bank" aria-label="Copy bank account">
+          Copy
+        </button>
+      </div>
+      <div class="item">
+      <span>🏦</span>
+      <span class="value" id="bank"
+        >Rekening BSI: <strong>7272688472</strong></span
+      >
+      <button class="copy" data-target="bank" aria-label="Copy bank account">
+        Copy
+      </button>
+    </div>
+    <ul>
+      <li>Diantar ke rumah Jln Mahabarata Gang Manshurin 1 Sangatta utara</li>
+    </ul>
+    <div class="steps">
+      <li>
+        Setelah melakukan transfer, mohon konfirmasi ke admin KSS. Status
+        pembayaran akan disampaikan melalui WA dan juga dapat dicek di website
+        dengan memasukkan 8 digit kode pribadi.
+      </li>
+      <li>
+        jika web belum update silahkan tunggu pada jam kerja atau 1x24 jam.
+      </li>
+    </div>
+
+    <footer>
+      <p>© 2025 Kredit Syariah Sangatta. Supported by Widiya</p>
+    </footer>
+    <script>
+      async function copyText(text) {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+            return true;
+          } else {
+            // Fallback for older browsers
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            const ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+            return ok;
+          }
+        } catch (err) {
+          return false;
+        }
+      }
+
+      document.querySelectorAll("button.copy").forEach((btn) => {
+        btn.addEventListener("click", async () => {
+          const id = btn.getAttribute("data-target");
+          const el = document.getElementById(id);
+          const text = el ? el.textContent.trim() : "";
+          const ok = await copyText(text);
+          if (ok) {
+            btn.textContent = "✓ Copied";
+            setTimeout(() => (btn.textContent = "Copy"), 1500);
+          } else {
+            btn.textContent = "✖ Gagal";
+            setTimeout(() => (btn.textContent = "Copy"), 1500);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
