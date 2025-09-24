@@ -1,83 +1,126 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pertanyaan Umum - Kredit Syariah Sangatta</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: ##2c7da0; f2f2f2;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Persyaratan - Kredit Syariah Sangatta</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #f4f4f4;
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+      }
 
-h1, h2, h3 {
-  color: #333;
-  margin-top: 0;
-}
+      h1 {
+        text-align: center;
+        color: #2c7da0;
+        margin-bottom: 30px;
+      }
 
-p {
-  line-height: 1.6;
-  color: #555;
-}
+      .accordion {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+        overflow: hidden;
+      }
 
-ul {
-  padding-left: 20px;
-}
+      .accordion-header {
+        padding: 15px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        background: #2c7da0;
+        color: white;
+      }
 
-li {
-  margin-bottom: 10px;
-}
+      .accordion-content {
+        padding: 15px 20px;
+        display: none;
+        background: #fff;
+        color: #333;
+        border-top: 1px solid #eee;
+      }
 
-a {
-  color: #007bff;
-  text-decoration: none;
-}
+      .accordion.active .accordion-content {
+        display: block;
+      }
 
-a:hover {
-  text-decoration: underline;
-}
-
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: #888;
-  margin-top: 40px;
-}
-   ol { padding-left: 20px; }
-  ol[type="a"] { padding-left: 30px; }
-
-</style>
-</head>
-<body>
-  <h1>Syarat</h1>
-
-<div class="steps">
-  <div>Syarat pengajuan kredit</div>
-  <div class="steps">
-    <ol>
-      <li>Amanah</li>
-      <li>Lebih diutamakan ada yang membawa</li>
-      <li>Memiliki WA aktif</li>
-      <li>Bisa dihubungi</li>
-      <li>
-        Siap dibuatkan grup WA peserta 2 orang
+      footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 14px;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Syarat Pengajuan</h1>
+    <h2>Kredit Syariah Sangatta</h2>
+    <div class="accordion">
+      <div class="accordion-header">1. Amanah</div>
+      <div class="accordion-content">
+        <li>Menepati janji bayar tepat waktu</li>
+        <p>Mengutamakan pembayaran kredit jika ada kebutuhan lain</p>
+        <p>besaran pembayaran sesuai perhitungan</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header">2. Lebih diutamakan ada yang membawa</div>
+      <div class="accordion-content">
+        <li>KSS lebih mengutamakan orang yang sudah kenal</li>
+        <li>jika belum kenal namun ada yang membawa juga lebih di utamakan</li>
+        <li>jika belum kenal silahkan memperkanalkan ke admin KSS</li>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header">3. Memiliki WA aktif</div>
+      <div class="accordion-content">
+        <li>Semua komunikasi akan menggunakan WA</li>
+        <li>Wajib menyimpan nomor admin KSS</li>
+        <li>
+          Di Saat komunikasi jika sering di area tanpa signal / paket, silahkan
+          menyertakan nomor keluarga terdekat
+        </li>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header">
+        4. Siap dibuatkan grup WA peserta 2 orang
+      </div>
+      <div class="accordion-content">
+        <li>Peserta Grup WA</li>
         <ol type="a">
           <li>Pemohon</li>
           <li>Admin KSS (Kredit Syariah Sangatta)</li>
         </ol>
-      </li>
-      <li>Mengisi formulir kesepakatan</li>
-    </ol>
-  </div>
-</div>
+        <li>Tujuan Grup WA</li>
+        <li>Pencatatan pembayaran</li>
+        <li>Mengingatkan jatuh tempo dan lainnya</li>
+        <li>Admin KSS akan menghapus grup jika sudah Lunas</li>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header">5. Mengisi formulir kesepakatan</div>
+      <div class="accordion-content">
+        <li>Untuk yang baru kredit akan dibuatkan formulir kesepakatan</li>
+        <li>
+          Jika sudah pernah transaksi tidak perlu mengisi formulir kesepakatan
+        </li>
+      </div>
+    </div>
 
-
-  
-  <footer>
-    <p>© 2025 Kredit Syariah Sangatta. Supported by Widiya</p>
-  </footer>
-
- </body>
+    <footer>
+      <p>© 2025 Kredit Syariah Sangatta. Supported by Widiya</p>
+    </footer>
+    <script>
+      document.querySelectorAll(".accordion-header").forEach((header) => {
+        header.addEventListener("click", () => {
+          const parent = header.parentElement;
+          parent.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
 </html>
