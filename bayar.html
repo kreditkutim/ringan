@@ -69,22 +69,16 @@
       <p>Transfer ke rekening • A/N: Widiya Ana Rachman:</p>
       <div class="item"><p>Bank Rakyat Indonesia</p> 
         <span>🏦</span>
-        <span class="value" id="bank"
+        <span class="value"
           <strong>056301013447530</strong></span
-        >
-        <button class="copy" data-target="bank" aria-label="Copy bank account">
-          Copy
-        </button>
+          >
       </div>
       <div class="item"><p>Bank Syariah Indonesia</p>
       <span>🏦</span>
-      <span class="value" id="bank"
+      <span class="value"
         <strong>7272688472</strong></span
       >
-      <button class="copy" data-target="bank" aria-label="Copy bank account">
-        Copy
-      </button>
-    </div>
+      </div>
     <ul>
       <li>Diantar ke rumah Jln Mahabarata Gang Manshurin 1 Sangatta utara</li>
     </ul>
@@ -102,44 +96,6 @@
     <footer>
       <p>© 2025 Kredit Syariah Sangatta. Supported by Widiya</p>
     </footer>
-    <script>
-      async function copyText(text) {
-        try {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(text);
-            return true;
-          } else {
-            // Fallback for older browsers
-            const ta = document.createElement("textarea");
-            ta.value = text;
-            ta.style.position = "fixed";
-            ta.style.left = "-9999px";
-            document.body.appendChild(ta);
-            ta.select();
-            const ok = document.execCommand("copy");
-            document.body.removeChild(ta);
-            return ok;
-          }
-        } catch (err) {
-          return false;
-        }
-      }
-
-      document.querySelectorAll("button.copy").forEach((btn) => {
-        btn.addEventListener("click", async () => {
-          const id = btn.getAttribute("data-target");
-          const el = document.getElementById(id);
-          const text = el ? el.textContent.trim() : "";
-          const ok = await copyText(text);
-          if (ok) {
-            btn.textContent = "✓ Copied";
-            setTimeout(() => (btn.textContent = "Copy"), 1500);
-          } else {
-            btn.textContent = "✖ Gagal";
-            setTimeout(() => (btn.textContent = "Copy"), 1500);
-          }
-        });
-      });
-    </script>
+   
   </body>
 </html>
