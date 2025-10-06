@@ -40,7 +40,7 @@ function hitungCicilan() {
   }
 
 const hargaSetelahDP = harga - dp;
-const faktor = (lama <= 5) ? 1.10 : 1 + (lama * 0.02);
+const faktor = (lama <= 6) ? 1.15 : 1 + (lama * 0.025);
 const hargaJualSementara = hargaSetelahDP * faktor;
   const cicilanAwal = hargaJualSementara / lama;
   const cicilanFinal = pembulatanRibuan(cicilanAwal);
