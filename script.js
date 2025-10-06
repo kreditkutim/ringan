@@ -35,7 +35,7 @@ function hitungCicilan() {
   }
 
   if (lama > 12) {
-    hasil.innerHTML = "<h3>Maaf, lebih 12 bulan hubungi Admin.</h3>";
+    hasil.innerHTML = "<h2>Maaf, lebih 12 bulan hubungi Admin.</h2>";
     return;
   }
 
