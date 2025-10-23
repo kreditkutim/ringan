@@ -1,3 +1,46 @@
+/* Spinner container: overlay full-page */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* pastikan di atas semua */
+  visibility: hidden; /* mulai disembunyikan */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Saat aktif: tampil */
+.spinner-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Spinner sendiri */
+.spinner {
+  border: 6px solid #f3f3f3; /* warna dasar */
+  border-top: 6px solid #3498db; /* warna “putaran” */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+/* Animasi */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
