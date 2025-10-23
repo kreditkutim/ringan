@@ -63,37 +63,101 @@ async function cekData() {
   const kode = document.getElementById("kode").value.trim();
   const errorDiv = document.getElementById("error");
   const hasilDiv = document.getElementById("hasil");
-  const spinner = document.getElementById("spinnerOverlay");
+  const spinnerOverlay = document.getElementById("spinnerOverlay");
+  const loadingTimer = document.getElementById("loadingTimer");
 
+  // Reset UI
   errorDiv.textContent = "";
   hasilDiv.style.display = "none";
+  loadingTimer.style.display = "none";
 
+  // Validasi input
   if (kode.length !== 8 || isNaN(kode)) {
     errorDiv.textContent = "Kode harus 8 digit angka.";
     return;
   }
 
-  spinner.classList.add("active");
+  // Tampilkan spinner + timer (pakai class active kalau CSS-mu pakai .active)
+  spinnerOverlay.classList.add("active");
+  loadingTimer.style.display = "block";
+  loadingTimer.textContent = "Loading...";
+
+  const startTime = performance.now();
 
   try {
-    const url = `https://script.google.com/macros/s/AKfycbz5VJRylw-dvset6w_JhzVkgUZ1zW5viLtJTKDS7hPSgHuRDBu3vYxqBEHu4cqebfxu/exec?kode=${kode}`;
-    const response = await fetch(url);
-    const result = await response.json();
+    // === GANTI URL jika perlu. Ini URL Apps Script yang kamu pakai sebelumnya ===
+    const url = `https://script.google.com/macros/s/AKfycbz5VJRylw-dvset6w_JhzVkgUZ1zW5viLtJTKDS7hPSgHuRDBu3vYxqBEHu4cqebfxu/exec?kode=${encodeURIComponent(kode)}`;
 
-    if (!result || result.status !== "success" || !result.data) {
-      errorDiv.textContent = "Data tidak ditemukan.";
+    console.log("Request URL:", url);
+
+    const response = await fetch(url, { cache: "no-store" }); // no-store buat ngehindari cache aneh saat debug
+
+    // cek response HTTP dulu
+    if (!response.ok) {
+      // HTTP error (404, 500, dll)
+      const endTimeErr = ((performance.now() - startTime) / 1000).toFixed(2);
+      loadingTimer.textContent = `Gagal (HTTP ${response.status}) setelah ${endTimeErr}s`;
+      errorDiv.textContent = `Server mengembalikan status ${response.status}. Cek console → Network.`;
+      console.error("HTTP error:", response.status, await response.text());
       return;
     }
 
-    const konsumen = result.data; // ambil objek data
-    tampilkanData(konsumen);
+    // parse JSON
+    const result = await response.json();
+    console.log("Response JSON:", result);
+
+    const endTime = performance.now();
+    const seconds = ((endTime - startTime) / 1000).toFixed(2);
+
+    // struktur yang kamu kirim sebelumnya: { status: "success", data: { ... } }
+    if (!result) {
+      loadingTimer.textContent = `Gagal memuat data setelah ${seconds}s`;
+      errorDiv.textContent = "Response kosong.";
+      return;
+    }
+
+    if (result.status !== "success" || !result.data) {
+      loadingTimer.textContent = `Selesai (${seconds}s)`;
+      // Jika ada pesan error spesifik dari API, tampilkan
+      const msg = result.message || "Data tidak ditemukan / format respon tidak sesuai.";
+      errorDiv.textContent = msg;
+      console.warn("API returned non-success:", result);
+      return;
+    }
+
+    // ambil objek konsumen
+    const konsumen = result.data;
+
+    // tampilkan waktu muat sesaat sebelum render
+    loadingTimer.textContent = `Loaded dalam ${seconds} detik`;
+
+    // Panggil fungsi render yang sudah kamu punya (tampilkanData)
+    try {
+      tampilkanData(konsumen);
+    } catch (renderErr) {
+      console.error("Error saat render data:", renderErr);
+      errorDiv.textContent = "Gagal menampilkan data (cek console).";
+      return;
+    }
+
+    // tunjukkan hasil
     hasilDiv.style.display = "block";
+
+    // Hilangkan timer otomatis setelah 3 detik agar UI rapi
+    setTimeout(() => {
+      loadingTimer.style.display = "none";
+    }, 3000);
+
   } catch (err) {
-    errorDiv.textContent = "Terjadi kesalahan saat mengambil data.";
+    console.error("Fetch error:", err);
+    loadingTimer.textContent = "Gagal memuat data!";
+    errorDiv.textContent = "Terjadi masalah jaringan atau server. Cek console / network.";
   } finally {
-    spinner.classList.remove("active");
+    // pastikan spinner selalu disembunyikan
+    spinnerOverlay.classList.remove("active");
   }
 }
+
 
 function showError(message) {
   const errorDiv = document.getElementById("error");
