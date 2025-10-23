@@ -62,39 +62,36 @@ const hargaJualSementara = hargaSetelahDP * faktor;
 async function cekData() {
   const kode = document.getElementById("kode").value.trim();
   const errorDiv = document.getElementById("error");
-  const loadingDiv = document.getElementById("loading");
   const hasilDiv = document.getElementById("hasil");
+  const spinner = document.getElementById("spinnerOverlay");
 
-  errorDiv.style.display = "none";
+  errorDiv.textContent = "";
   hasilDiv.style.display = "none";
-  loadingDiv.style.display = "block";
 
-  if (!/^[A-Za-z0-9]{8}$/.test(kode)) {
-    showError("Format kode harus 8 karakter huruf/angka");
-    loadingDiv.style.display = "none";
+  if (kode.length !== 8 || isNaN(kode)) {
+    errorDiv.textContent = "Kode harus 8 digit angka.";
     return;
   }
+
+  spinner.classList.add("active");
 
   try {
     const url = `https://script.google.com/macros/s/AKfycbz5VJRylw-dvset6w_JhzVkgUZ1zW5viLtJTKDS7hPSgHuRDBu3vYxqBEHu4cqebfxu/exec?kode=${kode}`;
     const response = await fetch(url);
+    const result = await response.json();
 
-    if (!response.ok) {
-      throw new Error("Gagal mengambil data");
+    if (!result || result.status !== "success" || !result.data) {
+      errorDiv.textContent = "Data tidak ditemukan.";
+      return;
     }
 
-    const data = await response.json();
-
-    if (data.error) {
-      throw new Error(data.error);
-    }
-
-    tampilkanData(data.data);
-
-  } catch (error) {
-    showError(error.message);
+    const konsumen = result.data; // ambil objek data
+    tampilkanData(konsumen);
+    hasilDiv.style.display = "block";
+  } catch (err) {
+    errorDiv.textContent = "Terjadi kesalahan saat mengambil data.";
   } finally {
-    loadingDiv.style.display = "none";
+    spinner.classList.remove("active");
   }
 }
 
