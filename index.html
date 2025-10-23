@@ -94,7 +94,10 @@
   <input type="text" id="kode" maxlength="8" placeholder="Contoh: 23011188">
   <button onclick="cekData()">Cek Data</button>
 
-  <div id="loading" style="display:none;">Memeriksa data...</div>
+  <p id="loadingTimer" style="display:none; font-size:12px; color:#555; margin-top:5px;">
+  Loading...
+</p>
+
   <div id="error" style="color:red;"></div>
 
   <div id="hasil" class="data-container" style="display:none;">
