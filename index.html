@@ -91,7 +91,15 @@
 <div class="info-box">
   <h2>Cek Data Konsumen</h2>
   <label for="kode">Masukkan Kode 8 Digit:</label>
-  <input type="text" id="kode" maxlength="8" placeholder="Contoh: 23011188">
+  <input 
+  type="text" 
+  id="kode" 
+  maxlength="8" 
+  placeholder="Contoh: 23011188"
+  oninput="validasiKode(this)"
+  onkeypress="return event.key >= '0' && event.key <= '9'"
+>
+
   <button onclick="cekData()">Cek Data</button>
 
   <p id="loadingTimer" style="display:none; font-size:12px; color:#555; margin-top:5px;">
