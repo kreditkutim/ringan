@@ -1,21 +1,21 @@
 console.log("Script utama jalan...");
 
 // === Format angka ribuan saat diketik ===
-document.querySelectorAll('.format-rupiah').forEach(input => {
-  input.addEventListener('input', function () {
-    let angka = this.value.replace(/[^0-9]/g, '');
+document.querySelectorAll(".format-rupiah").forEach((input) => {
+  input.addEventListener("input", function () {
+    let angka = this.value.replace(/[^0-9]/g, "");
     this.value = formatAngka(angka);
   });
 });
 
 function formatAngka(angka) {
-  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
 // === Ambil nilai asli untuk perhitungan ===
 function getAngka(id) {
   const val = document.getElementById(id).value;
-  return parseFloat(val.replace(/\./g, '')) || 0;
+  return parseFloat(val.replace(/\./g, "")) || 0;
 }
 
 // === Hitung Cicilan ===
@@ -24,10 +24,10 @@ function pembulatanRibuan(nilai) {
 }
 
 function hitungCicilan() {
-  const harga = getAngka('hargaBarang');
-  const lama = parseInt(document.getElementById('lamaCicilan').value);
-  const dp = getAngka('dp');
-  const hasil = document.getElementById('hasilCicilan');
+  const harga = getAngka("hargaBarang");
+  const lama = parseInt(document.getElementById("lamaCicilan").value);
+  const dp = getAngka("dp");
+  const hasil = document.getElementById("hasilCicilan");
 
   if (isNaN(harga) || isNaN(lama)) {
     hasil.innerHTML = "Harap isi Harga dan Lama Cicilan.";
@@ -39,21 +39,21 @@ function hitungCicilan() {
     return;
   }
 
-const hargaSetelahDP = harga - dp;
-const faktor = (lama <= 6) ? 1.15 : 1 + (lama * 0.025);
-const hargaJualSementara = hargaSetelahDP * faktor;
+  const hargaSetelahDP = harga - dp;
+  const faktor = lama <= 6 ? 1.15 : 1 + lama * 0.025;
+  const hargaJualSementara = hargaSetelahDP * faktor;
   const cicilanAwal = hargaJualSementara / lama;
   const cicilanFinal = pembulatanRibuan(cicilanAwal);
   const hargaJualFinal = cicilanFinal * lama;
 
   const tanggalSekarang = new Date();
   tanggalSekarang.setMonth(tanggalSekarang.getMonth() + (lama + 1));
-  const opsiTanggal = { month: 'long', year: 'numeric' };
-  const batasAkhir = tanggalSekarang.toLocaleDateString('id-ID', opsiTanggal);
+  const opsiTanggal = { month: "long", year: "numeric" };
+  const batasAkhir = tanggalSekarang.toLocaleDateString("id-ID", opsiTanggal);
 
   hasil.innerHTML = `
-    <p><b>Harga Jual:</b> Rp ${hargaJualFinal.toLocaleString('id-ID')}</p>
-    <p><b>Cicilan Bulanan:</b> Rp ${cicilanFinal.toLocaleString('id-ID')}</p>
+    <p><b>Harga Jual:</b> Rp ${hargaJualFinal.toLocaleString("id-ID")}</p>
+    <p><b>Cicilan Bulanan:</b> Rp ${cicilanFinal.toLocaleString("id-ID")}</p>
     <p><b>Batas Akhir Cicilan:</b> ${batasAkhir}</p>
   `;
 }
@@ -103,10 +103,10 @@ function showError(message) {
 
 function tampilkanData(data) {
   const formatRupiah = (angka) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
     }).format(angka);
   };
 
@@ -115,31 +115,31 @@ function tampilkanData(data) {
     return Number(val.toString().replace(/[^0-9]/g, ""));
   };
 
- const cekStatus = (harga, totalBayar) => {
-  const hargaNum = toNumber(harga);
-  const totalBayarNum = toNumber(totalBayar);
-  const isLunas = totalBayarNum >= hargaNum;
+  const cekStatus = (harga, totalBayar) => {
+    const hargaNum = toNumber(harga);
+    const totalBayarNum = toNumber(totalBayar);
+    const isLunas = totalBayarNum >= hargaNum;
 
-  return `<div style="
+    return `<div style="
     font-size: 1.4em;
     font-weight: bold;
     text-transform: uppercase;
-    color: ${isLunas ? 'green' : 'red'};
+    color: ${isLunas ? "green" : "red"};
   ">
-    ${isLunas ? 'LUNAS' : 'BELUM LUNAS'}
+    ${isLunas ? "LUNAS" : "BELUM LUNAS"}
   </div>`;
-};
+  };
 
   const hitungCicilanTerakhirBulan = (tanggalMulai, lamaBulan) => {
-    if (!tanggalMulai || !lamaBulan) return '-';
-    const parts = tanggalMulai.split('/');
-    if (parts.length !== 3) return '-';
+    if (!tanggalMulai || !lamaBulan) return "-";
+    const parts = tanggalMulai.split("/");
+    if (parts.length !== 3) return "-";
     const month = parseInt(parts[1], 10) - 1;
     const year = parseInt(parts[2], 10);
     const mulaiDate = new Date(year, month, 1);
     mulaiDate.setMonth(mulaiDate.getMonth() + parseInt(lamaBulan, 10));
-    const options = { month: 'long', year: 'numeric' };
-    return mulaiDate.toLocaleDateString('id-ID', options);
+    const options = { month: "long", year: "numeric" };
+    return mulaiDate.toLocaleDateString("id-ID", options);
   };
 
   const harga = toNumber(data.harga);
@@ -148,23 +148,33 @@ function tampilkanData(data) {
   const sisaBayar = harga - totalBayar;
 
   document.getElementById("detailKonsumen").innerHTML = `
-    <p><strong>Kode:</strong> ${data.kode || '-'}</p>
-    <p><strong>Nama:</strong> ${data.nama || '-'}</p>
-    <p><strong>Barang:</strong> ${data.barang || '-'}</p>
-    <p><strong>Harga:</strong> ${harga ? formatRupiah(harga) : '-'}</p>
-    <p><strong>Cicilan per Bulan:</strong> ${cicilanPerBulan ? formatRupiah(cicilanPerBulan) : '-'}</p>
-    <p><strong>Lama Cicilan:</strong> ${data.lamaBulan || '-'} bulan</p>
-    <p><strong>Cicilan Terakhir:</strong> ${hitungCicilanTerakhirBulan(data.tanggalMulai, data.lamaBulan)}</p>
+    <p><strong>Kode:</strong> ${data.kode || "-"}</p>
+    <p><strong>Nama:</strong> ${data.nama || "-"}</p>
+    <p><strong>Barang:</strong> ${data.barang || "-"}</p>
+    <p><strong>Harga:</strong> ${harga ? formatRupiah(harga) : "-"}</p>
+    <p><strong>Cicilan per Bulan:</strong> ${
+      cicilanPerBulan ? formatRupiah(cicilanPerBulan) : "-"
+    }</p>
+    <p><strong>Lama Cicilan:</strong> ${data.lamaBulan || "-"} bulan</p>
+    <p><strong>Cicilan Terakhir:</strong> ${hitungCicilanTerakhirBulan(
+      data.tanggalMulai,
+      data.lamaBulan
+    )}</p>
     <p><strong>Status:</strong> ${cekStatus(harga, totalBayar)}</p>
-    <p><strong>Total Dibayar:</strong> ${totalBayar ? formatRupiah(totalBayar) : '-'}</p>
-    <p><strong>Sisa Pembayaran:</strong> ${sisaBayar ? formatRupiah(sisaBayar) : '-'}</p>
+    <p><strong>Total Dibayar:</strong> ${
+      totalBayar ? formatRupiah(totalBayar) : "-"
+    }</p>
+    <p><strong>Sisa Pembayaran:</strong> ${
+      sisaBayar ? formatRupiah(sisaBayar) : "-"
+    }</p>
   `;
 
   const riwayatDiv = document.getElementById("riwayatCicilan");
   if (data.cicilan && data.cicilan.length > 0) {
-    riwayatDiv.innerHTML = data.cicilan.map((cicilan, index) => {
-      const nominal = toNumber(cicilan.nominal);
-      return `
+    riwayatDiv.innerHTML = data.cicilan
+      .map((cicilan, index) => {
+        const nominal = toNumber(cicilan.nominal);
+        return `
         <div class="cicilan-item" style="
           border: 1px solid #ccc;
           border-radius: 6px;
@@ -173,11 +183,14 @@ function tampilkanData(data) {
           background: #f9f9f9;
         ">
           <p><strong>Cicilan ke-${index + 1}</strong></p>
-          <p><strong>Tanggal:</strong> ${cicilan.tanggal || '-'}</p>
-          <p><strong>Nominal:</strong> ${nominal ? formatRupiah(nominal) : '-'}</p>
+          <p><strong>Tanggal:</strong> ${cicilan.tanggal || "-"}</p>
+          <p><strong>Nominal:</strong> ${
+            nominal ? formatRupiah(nominal) : "-"
+          }</p>
         </div>
       `;
-    }).join('');
+      })
+      .join("");
   } else {
     riwayatDiv.innerHTML = "<p>Belum ada riwayat pembayaran</p>";
   }
@@ -185,33 +198,31 @@ function tampilkanData(data) {
   document.getElementById("hasil").style.display = "block";
 }
 
-
 // === Floating Menu Toggle ===
 function toggleMenu() {
   const menu = document.getElementById("floating-links");
-  menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
 function sembunyikanMenu() {
   const menu = document.getElementById("floating-links");
   menu.style.display = "none";
 }
 
-
 // === Panel Konten Dinamis ===
 function bukaPanel(file) {
   fetch(file)
-    .then(res => res.text())
-    .then(html => {
+    .then((res) => res.text())
+    .then((html) => {
       document.getElementById("isiPanel").innerHTML = html;
       document.getElementById("panelKonten").style.display = "block";
       aktifkanAccordion(); // 🔥 aktifkan interaksi setelah konten dimuat
     })
-    .catch(err => {
-      document.getElementById("isiPanel").innerHTML = "<p>Gagal memuat konten.</p>";
+    .catch((err) => {
+      document.getElementById("isiPanel").innerHTML =
+        "<p>Gagal memuat konten.</p>";
       document.getElementById("panelKonten").style.display = "block";
     });
 }
-
 
 function tutupPanel() {
   document.getElementById("panelKonten").style.display = "none";
@@ -219,18 +230,17 @@ function tutupPanel() {
 }
 
 function aktifkanAccordion() {
-  document.querySelectorAll('#isiPanel .accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
+  document.querySelectorAll("#isiPanel .accordion-header").forEach((header) => {
+    header.addEventListener("click", () => {
       const parent = header.parentElement;
-      parent.classList.toggle('active');
+      parent.classList.toggle("active");
     });
   });
 }
-self.addEventListener('install', event => {
+self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener("activate", (event) => {
   clients.claim();
 });
-
