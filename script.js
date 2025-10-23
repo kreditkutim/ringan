@@ -59,6 +59,27 @@ function hitungCicilan() {
 }
 
 // === Cek Data Konsumen (Simulasi) ===
+
+function validasiKode(input) {
+  // Hapus semua selain angka
+  input.value = input.value.replace(/[^0-9]/g, "");
+
+  const errorDiv = document.getElementById("error");
+
+  if (input.value.length > 0 && input.value.length < 8) {
+    errorDiv.textContent = "Kode harus 8 digit angka.";
+  } else {
+    errorDiv.textContent = "";
+  }
+}
+
+document.getElementById("kode").addEventListener("keyup", function (e) {
+  if (e.key === "Enter" && this.value.length === 8) {
+    cekData();
+  }
+});
+
+
 async function cekData() {
   const kode = document.getElementById("kode").value.trim();
   const errorDiv = document.getElementById("error");
